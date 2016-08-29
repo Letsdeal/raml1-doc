@@ -3,7 +3,7 @@
     { _.toUpper(method.method()) } { resource.relativeUri().value() }
   </h2>
 
-  <method-request></method-request>
+  <method-request method={ opts.method }></method-request>
 
   <script>
     this._ = require('lodash')

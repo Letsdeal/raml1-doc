@@ -10,7 +10,7 @@
 
   <div class="ui row grid">
     <div class="seven wide column">
-      <resource-method method={ method } resource={resource}
+      <resource-method method={ method } resource={ resource }
         each={ method in resource.methods() }></resource-method>
     </div>
 
