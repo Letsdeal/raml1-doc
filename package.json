@@ -12,6 +12,7 @@
     "commander": "^2.9.0",
     "deasync": "^0.1.7",
     "glob": "^7.0.5",
+    "inverse": "^1.0.0",
     "json-schema-ref-parser": "^3.1.2",
     "lodash": "^4.15.0",
     "marked": "^0.3.6",

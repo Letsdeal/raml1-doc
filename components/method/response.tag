@@ -32,8 +32,9 @@
 
     this.dereference = (schema) => {
       var data, done = false
+      var resolver = this.parent.app.make('schema-resolver')
 
-      this.$RefParser.dereference(schema, function(err, schema) {
+      this.$RefParser.dereference(schema, { resolve: { raml: resolver }}, function(err, schema) {
         if (err) {
           console.error(err)
           return done = true

@@ -21,6 +21,7 @@
   </div>
 
   <script>
+    this.app = this.parent.app
     this.resource = opts.resource
     this.schemas = this.parent.schemas
   </script>

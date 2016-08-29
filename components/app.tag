@@ -10,6 +10,7 @@
 
   <script>
     this.api = this.parent.api
+    this.app = this.parent.app
     this.schemas = this.parent.schemas
   </script>
 </app>

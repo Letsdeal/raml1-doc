@@ -6,6 +6,9 @@ var program = require('commander')
 var path = require('path')
 var ramlParser = require('raml-1-parser')
 var riot = require('riot')
+var Inverse = require('inverse')
+
+var app = new Inverse()
 
 program
   .version('1.0.0')
@@ -35,11 +38,13 @@ if (api.errors()) {
   // process.exit(1)
 }
 
-let schemas = []
+app.singleton('api', () => {
+  return api
+})
 
-api.schemas().forEach(function(schema) {
-  let json = JSON.parse(schema.value().value())
-  schemas.push(json)
+app.singleton('schema-resolver', () => {
+  var resolver = require('../src/schema-resolver')
+  return resolver(api)
 })
 
 let componentsPath = path.join(__dirname, '../components/**/*.tag')
@@ -49,7 +54,7 @@ glob.sync(componentsPath).forEach(function(tag) {
 })
 
 let index = require('../index.tag')
-let html = riot.render(index, { 'api': api, 'schemas': schemas })
+let html = riot.render(index, { 'api': api, 'app': app })
 
 process.stdout.write(html)
 process.exit(0)

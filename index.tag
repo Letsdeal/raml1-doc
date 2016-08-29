@@ -17,6 +17,7 @@
 
     <script>
       this.api = opts.api
+      this.app = opts.app
     </script>
   </head>
 
