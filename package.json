@@ -1,0 +1,25 @@
+{
+  "name": "ramldoc",
+  "version": "1.0.0",
+  "description": "Generate HTML documentation using RAML",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "deasync": "^0.1.7",
+    "glob": "^7.0.5",
+    "json-schema-ref-parser": "^3.1.2",
+    "lodash": "^4.15.0",
+    "marked": "^0.3.6",
+    "raml-1-parser": "^0.2.33",
+    "riot": "^2.6.0",
+    "twig": "^0.9.5"
+  },
+  "devDependencies": {
+    "intern": "^3.3.1"
+  }
+}

@@ -1,0 +1,671 @@
+{
+  "title": "Client",
+  "version": "1.0",
+  "baseUri": "https://qa.letstest.se/api/front",
+  "protocols": [
+    "HTTPS"
+  ],
+  "mediaType": "application/json",
+  "schemas": [
+    {
+      "category": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"id\": \"category\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"name\": {\n            \"type\": \"string\"\n        },\n        \"slug\": {\n            \"type\": \"string\"\n        },\n        \"dealTypes\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"string\",\n                \"enum\": [\n                    \"local\",\n                    \"shopping\",\n                    \"travel\"\n                ]\n            }\n        }\n    }\n}\n"
+    },
+    {
+      "categories": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"array\",\n    \"items\": {\n        \"$ref\": \"category\"\n    }\n}\n"
+    },
+    {
+      "city": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"id\": \"city\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"id\": {\n            \"type\": \"string\"\n        },\n        \"name\": {\n            \"type\": \"string\"\n        },\n        \"slug\": {\n            \"type\": \"string\"\n        },\n        \"coordinates\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"lat\": {\n                    \"type\": \"number\"\n                },\n                \"lng\": {\n                    \"type\": \"number\"\n                }\n            }\n        }\n    }\n}\n"
+    },
+    {
+      "cities": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"array\",\n    \"items\": {\n        \"$ref\": \"city\"\n    }\n}\n"
+    },
+    {
+      "deal": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"id\": \"deal\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"id\": {\n            \"type\": \"string\"\n        },\n        \"slug\": {\n            \"type\": \"string\"\n        },\n        \"imageUrl\": {\n            \"type\": \"string\"\n        },\n        \"price\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"newPrice\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"value\": {\n                            \"type\": \"integer\"\n                        },\n                        \"currency\": {\n                            \"type\": \"string\"\n                        }\n                    }\n                },\n                \"oldPrice\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"value\": {\n                            \"type\": \"integer\"\n                        },\n                        \"currency\": {\n                            \"type\": \"string\"\n                        }\n                    }\n                },\n                \"discount\": {\n                    \"type\": \"integer\"\n                }\n            }\n        },\n        \"name\": {\n            \"type\": \"string\"\n        },\n        \"shortName\": {\n            \"type\": \"string\"\n        },\n        \"brand\": {\n            \"type\": \"string\"\n        },\n        \"startDate\": {\n            \"type\": \"string\"\n        },\n        \"endDate\": {\n            \"type\": \"string\"\n        },\n        \"numberOfBuyers\": {\n            \"type\": \"integer\"\n        },\n        \"location\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"address\": {\n                    \"type\": \"string\"\n                },\n                \"coordinates\": {\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"latitude\": {\n                            \"type\": \"number\"\n                        },\n                        \"longitude\": {\n                            \"type\": \"number\"\n                        }\n                    }\n                }\n            }\n        },\n        \"type\": {\n            \"type\": \"string\"\n        },\n        \"categories\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"name\": {\n                        \"type\": \"string\"\n                    },\n                    \"slug\": {\n                        \"type\": \"string\"\n                    }\n                }\n            }\n        },\n        \"description\": {\n            \"type\": \"string\"\n        },\n        \"cities\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {}\n            }\n        }\n    }\n}\n"
+    },
+    {
+      "deals": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"metadata\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"total\": {\n                    \"type\": \"integer\"\n                },\n                \"limit\": {\n                    \"type\": \"integer\"\n                },\n                \"offset\": {\n                    \"type\": \"integer\"\n                }\n            }\n        },\n        \"deals\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"$ref\": \"deal\"\n            }\n        }\n    }\n}\n"
+    },
+    {
+      "layouts": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"slug\": {\n            \"type\": \"string\"\n        },\n        \"visuals\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {}\n            }\n        },\n        \"sections\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"title\": {\n                        \"type\": \"string\"\n                    },\n                    \"type\": {\n                        \"type\": \"string\"\n                    },\n                    \"variant\": {\n                        \"type\": \"string\"\n                    },\n                    \"numberOfItems\": {\n                        \"type\": \"integer\"\n                    },\n                    \"locationRequired\": {\n                        \"type\": \"boolean\"\n                    },\n                    \"items\": {\n                        \"type\": \"array\",\n                        \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                                \"imageUrl\": {\n                                    \"type\": \"string\"\n                                },\n                                \"uri\": {\n                                    \"type\": \"string\"\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    }\n}\n"
+    },
+    {
+      "myDeal": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"id\": \"myDeal\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"id\": {\n            \"type\": \"string\"\n        },\n        \"title\": {\n            \"type\": \"string\"\n        },\n        \"imageUrl\": {\n            \"type\": \"string\"\n        },\n        \"orderId\": {\n            \"type\": \"integer\"\n        },\n        \"orderDate\": {\n            \"type\": \"string\"\n        },\n        \"type\": {\n            \"type\": \"string\"\n        },\n        \"status\": {\n            \"type\": \"string\"\n        },\n        \"expirationDate\": {\n            \"type\": \"string\"\n        }\n    }\n}\n"
+    },
+    {
+      "myDeals": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"metadata\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"total\": {\n                    \"type\": \"integer\"\n                },\n                \"limit\": {\n                    \"type\": \"integer\"\n                },\n                \"offset\": {\n                    \"type\": \"integer\"\n                }\n            }\n        },\n        \"myDeals\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"$ref\": \"myDeal\"\n            }\n        }\n    }\n}\n"
+    },
+    {
+      "section": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"object\"\n}\n"
+    }
+  ],
+  "traits": [
+    {
+      "pagination": {
+        "queryParameters": {
+          "limit": {
+            "name": "limit",
+            "displayName": "limit",
+            "type": "integer",
+            "required": false,
+            "default": 10,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "offset": {
+            "name": "offset",
+            "displayName": "offset",
+            "type": "integer",
+            "required": false,
+            "default": 0,
+            "repeat": false,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "pagination"
+      }
+    },
+    {
+      "coordinates": {
+        "queryParameters": {
+          "lat": {
+            "name": "lat",
+            "displayName": "lat",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "description": "latitude",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "lng": {
+            "name": "lng",
+            "displayName": "lng",
+            "type": "number",
+            "required": false,
+            "repeat": false,
+            "description": "longitude",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "name": "coordinates"
+      }
+    }
+  ],
+  "securitySchemes": [
+    {
+      "oauth2": {
+        "name": "oauth2",
+        "type": "OAuth 2.0",
+        "settings": {
+          "accessTokenUri": "/api/front/oauth/v2/token",
+          "authorizationUri": "/",
+          "authorizationGrants": [
+            "client_credentials"
+          ]
+        }
+      }
+    }
+  ],
+  "resources": [
+    {
+      "relativeUri": "/cities",
+      "is": [
+        "coordinates"
+      ],
+      "methods": [
+        {
+          "responses": {
+            "200": {
+              "code": "200",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "schema": "cities",
+                  "example": "[\n  {\n    \"id\": \"1679091c5a880faf6fb5e6087eb1b2dc\",\n    \"name\": \"Norrköping\",\n    \"slug\": \"norrk-ping\",\n    \"coordinates\": {\n      \"latitude\": 58.6,\n      \"longitude\": 16.183333\n    }\n  },\n  {\n    \"id\": \"c4ca4238a0b923820dcc509a6f75849b\",\n    \"name\": \"Stockholm\",\n    \"slug\": \"stockholm\",\n    \"coordinates\": {\n      \"latitude\": 59.333333,\n      \"longitude\": 18.05\n    }\n  },\n  {\n    \"id\": \"e4da3b7fbbce2345d7772b0674a318d5\",\n    \"name\": \"Linköping\",\n    \"slug\": \"link-ping\",\n    \"coordinates\": {\n      \"latitude\": 58.416667,\n      \"longitude\": 15.616667\n    }\n  },\n  {\n    \"id\": \"c81e728d9d4c2f636f067f89cc14862c\",\n    \"name\": \"Göteborg\",\n    \"slug\": \"g-teborg\",\n    \"coordinates\": {\n      \"latitude\": 57.716667,\n      \"longitude\": 11.966667\n    }\n  },\n  {\n    \"id\": \"eccbc87e4b5ce2fe28308fd9f2a7baf3\",\n    \"name\": \"Malmö\",\n    \"slug\": \"malm\",\n    \"coordinates\": {\n      \"latitude\": 55.6,\n      \"longitude\": 13\n    }\n  },\n  {\n    \"id\": \"a87ff679a2f3e71d9181a67b7542122c\",\n    \"name\": \"Uppsala\",\n    \"slug\": \"uppsala\",\n    \"coordinates\": {\n      \"latitude\": 59.866667,\n      \"longitude\": 17.633333\n    }\n  }\n]\n",
+                  "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"array\",\n    \"items\": {\n        \"$ref\": \"city\"\n    }\n}\n"
+                }
+              }
+            }
+          },
+          "protocols": [
+            "HTTPS"
+          ],
+          "method": "get",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "protocols": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      ],
+      "displayName": "Cities",
+      "relativeUriPathSegments": [
+        "cities"
+      ]
+    },
+    {
+      "relativeUri": "/categories",
+      "methods": [
+        {
+          "responses": {
+            "200": {
+              "code": "200",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "schema": "categories",
+                  "example": "[\n  {\n    \"name\": \"Familj & Barn\",\n    \"slug\": \"familj-barn\",\n    \"dealTypes\": [\n      \"shopping\"\n    ]\n  },\n  {\n    \"name\": \"Inkl. flyg\",\n    \"slug\": \"inkl-flyg\",\n    \"dealTypes\": [\n      \"travel\"\n    ]\n  },\n  {\n    \"name\": \"Fordon\",\n    \"slug\": \"fordon\",\n    \"dealTypes\": [\n      \"shopping\",\n      \"local\"\n    ]\n  },\n  {\n    \"name\": \"Sport & Fritid\",\n    \"slug\": \"sport-fritid\",\n    \"dealTypes\": [\n      \"shopping\"\n    ]\n  },\n  {\n    \"name\": \"Hem\",\n    \"slug\": \"hem\",\n    \"dealTypes\": [\n      \"shopping\"\n    ]\n  },\n  {\n    \"name\": \"Skönhet & Hälsa\",\n    \"slug\": \"sk-nhet-h-lsa\",\n    \"dealTypes\": [\n      \"shopping\",\n      \"local\"\n    ]\n  },\n  {\n    \"name\": \"Internationellt\",\n    \"slug\": \"internationellt\",\n    \"dealTypes\": [\n      \"travel\"\n    ]\n  },\n  {\n    \"name\": \"Intim\",\n    \"slug\": \"intim\",\n    \"dealTypes\": [\n      \"shopping\"\n    ]\n  },\n  {\n    \"name\": \"Mat\",\n    \"slug\": \"mat\",\n    \"dealTypes\": [\n      \"local\"\n    ]\n  },\n  {\n    \"name\": \"Mode\",\n    \"slug\": \"mode\",\n    \"dealTypes\": [\n      \"shopping\"\n    ]\n  },\n  {\n    \"name\": \"Nationellt\",\n    \"slug\": \"nationellt\",\n    \"dealTypes\": [\n      \"travel\"\n    ]\n  },\n  {\n    \"name\": \"Wellness / Spa\",\n    \"slug\": \"wellness-spa\",\n    \"dealTypes\": [\n      \"travel\"\n    ]\n  },\n  {\n    \"name\": \"Teknik\",\n    \"slug\": \"teknik\",\n    \"dealTypes\": [\n      \"shopping\"\n    ]\n  },\n  {\n    \"name\": \"Upplevelser\",\n    \"slug\": \"upplevelser\",\n    \"dealTypes\": [\n      \"local\"\n    ]\n  }\n]\n",
+                  "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"array\",\n    \"items\": {\n        \"$ref\": \"category\"\n    }\n}\n"
+                }
+              }
+            }
+          },
+          "protocols": [
+            "HTTPS"
+          ],
+          "queryParameters": {
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "type": "string",
+              "required": false,
+              "repeat": false,
+              "enum": [
+                "local",
+                "shopping",
+                "travel"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "method": "get",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "protocols": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      ],
+      "displayName": "Categories",
+      "relativeUriPathSegments": [
+        "categories"
+      ]
+    },
+    {
+      "relativeUri": "/deals",
+      "methods": [
+        {
+          "responses": {
+            "200": {
+              "code": "200",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "schema": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"metadata\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"total\": {\n                    \"type\": \"integer\"\n                },\n                \"limit\": {\n                    \"type\": \"integer\"\n                },\n                \"offset\": {\n                    \"type\": \"integer\"\n                }\n            }\n        },\n        \"deals\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"$ref\": \"deal\"\n            }\n        }\n    }\n}\n",
+                  "example": "{\n  \"metadata\": {\n    \"total\": 699,\n    \"limit\": 10,\n    \"offset\": 0\n  },\n  \"items\": [\n    {\n      \"id\": \"efbf44517debaf47176f2a31d7c55097\",\n      \"slug\": \"keratinbehandling\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/6224899.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 79900,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 290000,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 72\n      },\n      \"name\": \"Ge ditt hår en uppfriskande keratinbehandling hos BrazilHairstyling. Välj med eller utan hårinpackning för extra glans och hållbarhet. Ord. pris från\",\n      \"shortName\": \"Keratinbehandling\",\n      \"brand\": \"Brazil Hairstyle \",\n      \"startDate\": \"2016-07-19T00:00:15+0200\",\n      \"endDate\": \"2016-09-17T00:00:01+0200\",\n      \"numberOfBuyers\": 4,\n      \"type\": \"local\",\n      \"categories\": [\n        {\n          \"name\": \"Skönhet & Hälsa\",\n          \"slug\": \"sk-nhet-h-lsa\"\n        }\n      ],\n      \"description\": \"Keratinbehandling inkl. hårinpackning för extra glans och hållbarhet hos BrazilHairstyling. Ordinarie pris 3 449 kr, din deal: 899 kr – \",\n      \"cities\": [\n        {\n          \"id\": \"c4ca4238a0b923820dcc509a6f75849b\",\n          \"name\": \"Stockholm\",\n          \"slug\": \"stockholm\",\n          \"coordinates\": {\n            \"latitude\": 59.333333,\n            \"longitude\": 18.05\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"e72f68c0674658addc842e28ece9735c\",\n      \"slug\": \"1-0-ml-restylane\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/6243487.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 165000,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 350000,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 52\n      },\n      \"name\": \"Få fylliga läppar: Injektionsbehandling – 1,0 ml Restylane hos Harodds dental clinic and laser treatment center.\",\n      \"shortName\": \"1,0 ml Restylane\",\n      \"brand\": \"Harodds Dental and Laser treatment Centre AB\",\n      \"startDate\": \"2016-07-19T00:00:15+0200\",\n      \"endDate\": \"2016-08-18T00:00:01+0200\",\n      \"numberOfBuyers\": 2,\n      \"location\": {\n        \"address\": \"Rundelen 3\\n211 19 Malmö\",\n        \"coordinates\": {\n          \"latitude\": 55.605667,\n          \"longitude\": 13.005549\n        }\n      },\n      \"type\": \"local\",\n      \"categories\": [\n        {\n          \"name\": \"Skönhet & Hälsa\",\n          \"slug\": \"sk-nhet-h-lsa\"\n        }\n      ],\n      \"description\": \"Harodds dental clinic and laser treatment center fokuserar på att erbjuda kunden högkvalitativ service, moderna och säkra behandlingar med god service kombinerat med erfarenhet, kompetens, trygghet och tillgänglighet. Behandlingen utförs av behörig personal med erfarenhet från Storbritannien. Du hittar salongen på Rundelen 3 i Malmö.\",\n      \"cities\": []\n    },\n    {\n      \"id\": \"4e1ca6e8555681fb23ab2acd17b21315\",\n      \"slug\": \"vaxning-flera-alternativ\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/4335150.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 14900,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 34900,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 57\n      },\n      \"name\": \"Vaxning hos Aleklinik. Välj bland flera behandlingsområden.  från\",\n      \"shortName\": \"Vaxning – flera alternativ\",\n      \"brand\": \"Alekliniken AB\",\n      \"startDate\": \"2016-07-19T00:00:14+0200\",\n      \"endDate\": \"2016-08-19T00:00:01+0200\",\n      \"numberOfBuyers\": 3,\n      \"type\": \"local\",\n      \"categories\": [\n        {\n          \"name\": \"Skönhet & Hälsa\",\n          \"slug\": \"sk-nhet-h-lsa\"\n        }\n      ],\n      \"description\": \"Vaxning hos Aleklinik. Vid köpknappen väljer du område att behandla.\",\n      \"cities\": []\n    },\n    {\n      \"id\": \"27714654dfc37948a08ae38f9f618804\",\n      \"slug\": \"carboxytherapy\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/1800681.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 199900,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 600000,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 66\n      },\n      \"name\": \"Hudföryngring: 4 behandlingar med carboxytherapy hos Stockholm Medicus.\",\n      \"shortName\": \"Carboxytherapy\",\n      \"brand\": \"Stockholms Medicus \",\n      \"startDate\": \"2016-07-19T00:00:14+0200\",\n      \"endDate\": \"2016-08-18T00:00:01+0200\",\n      \"numberOfBuyers\": 0,\n      \"location\": {\n        \"address\": \"Regeringsgatan 48\\n111 56 Stockholm\",\n        \"coordinates\": {\n          \"latitude\": 59.334373,\n          \"longitude\": 18.068169\n        }\n      },\n      \"type\": \"local\",\n      \"categories\": [\n        {\n          \"name\": \"Skönhet & Hälsa\",\n          \"slug\": \"sk-nhet-h-lsa\"\n        }\n      ],\n      \"description\": \"Carboxybehandlingen är en form av koldioxidbehandlig där små mängder koldioxid (C02) injiceras i huden för att minska cellulitbildning, bryta ner fett och stimulera produktionen av kollagen. Carboxy sägs förbättra hudens elasticitet och cirkulation, samt öka fettförbränningen.\",\n      \"cities\": [\n        {\n          \"id\": \"c4ca4238a0b923820dcc509a6f75849b\",\n          \"name\": \"Stockholm\",\n          \"slug\": \"stockholm\",\n          \"coordinates\": {\n            \"latitude\": 59.333333,\n            \"longitude\": 18.05\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"6db1e46e9a12f8d845ecdc9d82023f70\",\n      \"slug\": \"4-x-4-timmar-hemst-dning\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/3490661.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 128000,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 512000,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 75\n      },\n      \"name\": \"4 timmar hemstädning, vid 4 tillfällen, för bara\",\n      \"shortName\": \"4 x 4 timmar hemstädning\",\n      \"brand\": \"Backa Flyttservice \",\n      \"startDate\": \"2016-07-19T00:00:13+0200\",\n      \"endDate\": \"2016-08-18T00:00:01+0200\",\n      \"numberOfBuyers\": 0,\n      \"type\": \"local\",\n      \"categories\": [\n        {\n          \"name\": \"Hem\",\n          \"slug\": \"hem\"\n        }\n      ],\n      \"description\": \"På hösten finns det så mycket annat att göra än att städa. Få hjälp att hålla rent i hemmet med dagens städdeal från Backa Flyttservice!\",\n      \"cities\": []\n    },\n    {\n      \"id\": \"883ea2275d54eadbfa30f01a2033c55b\",\n      \"slug\": \"b-ddset\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/2169347.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 29900,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 79800,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 62\n      },\n      \"name\": \"Bädda sängen sommarfräsch med bäddset från Lord Nelson Victory. Välj mellan två olika färgställningar! Rek. butikspris\",\n      \"shortName\": \"Bäddset\",\n      \"brand\": \"Letsdeal.se\",\n      \"startDate\": \"2016-07-19T00:00:07+0200\",\n      \"endDate\": \"2016-08-19T00:00:01+0200\",\n      \"numberOfBuyers\": 36,\n      \"type\": \"shopping\",\n      \"categories\": [\n        {\n          \"name\": \"Hem\",\n          \"slug\": \"hem\"\n        }\n      ],\n      \"description\": \"Bädda sängen sommarfräsch med det nya bäddsetet Björnrand från Lord Nelson Victory. Bäddsetet kommer i 2-pack vilket innebär att du får två örngott och två påslakan.\",\n      \"cities\": []\n    },\n    {\n      \"id\": \"a7538ad9ece57127495e7bf95d33ce30\",\n      \"slug\": \"diskb-nksorganizer\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/5633957.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 14900,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 44000,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 66\n      },\n      \"name\": \"Organisera stöket på diskbänken med en diskbänksorganizer med plats för diskborste, trasa och tvättsvamp. Välj mellan två färger! Ord. pris\",\n      \"shortName\": \"Diskbänksorganizer\",\n      \"brand\": \"Nordic Publisher Group ApS\",\n      \"startDate\": \"2016-07-19T00:00:05+0200\",\n      \"endDate\": \"2016-09-06T00:00:01+0200\",\n      \"numberOfBuyers\": 62,\n      \"type\": \"shopping\",\n      \"categories\": [\n        {\n          \"name\": \"Hem\",\n          \"slug\": \"hem\"\n        }\n      ],\n      \"description\": \"Är du också trött på att trasor, diskborstar och tvättsvampar ligger huller om buller på diskbänken och i vasken? Med en diskbänksorganizer kan du få bättre ordning på grejerna. Välj mellan två olika färger!\",\n      \"cities\": []\n    },\n    {\n      \"id\": \"3c6c8d55906a7935f23d1fae19a027ec\",\n      \"slug\": \"elegant-bestickset\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/6190012.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 39900,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 130900,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 69\n      },\n      \"name\": \"Elegant bestickset från Mulex i modern rundad design. Välj mellan set om 30, 60 eller 72 delar. Rekommenderat butikspris från\",\n      \"shortName\": \"Elegant bestickset\",\n      \"brand\": \"Mulex GmbH\",\n      \"startDate\": \"2016-07-19T00:00:04+0200\",\n      \"endDate\": \"2016-08-20T00:00:01+0200\",\n      \"numberOfBuyers\": 21,\n      \"type\": \"shopping\",\n      \"categories\": [\n        {\n          \"name\": \"Hem\",\n          \"slug\": \"hem\"\n        }\n      ],\n      \"description\": \"”Houston” är ett elegant bestickset från Mulex. Besticken är i modern rundad design med handtag i frostat stål.\",\n      \"cities\": []\n    },\n    {\n      \"id\": \"4351d5239b8244c278b3a076eae7ba65\",\n      \"slug\": \"citygrips-fr-n-choopie\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/2416775.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 9800,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 19900,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 50\n      },\n      \"name\": \"Piffa upp barnvagnen! CityGrips från Choopie i flera färger och mönster. Välj den modell som passar just din barnvagn. Rek. butikspris\",\n      \"shortName\": \"CityGrips från Choopie\",\n      \"brand\": \"jTre AB\",\n      \"startDate\": \"2016-07-19T00:00:03+0200\",\n      \"endDate\": \"2016-10-01T00:00:01+0200\",\n      \"numberOfBuyers\": 2,\n      \"type\": \"shopping\",\n      \"categories\": [\n        {\n          \"name\": \"Sport & Fritid\",\n          \"slug\": \"sport-fritid\"\n        }\n      ],\n      \"description\": \"Piffa upp barnvagnen med CityGrips från Choopie tillverkade i ett mjukt och ventilerande material som ger dig ett bekvämt grepp, samtidigt som handtagsskydden skyddar mot smuts och slitage. Massor av härliga färger och mönster!\",\n      \"cities\": []\n    },\n    {\n      \"id\": \"1beecad75999798b52cb1e68132c848d\",\n      \"slug\": \"praktisk-ngmopp-f-r-effektiv-reng-ring\",\n      \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/3043369.jpg\",\n      \"price\": {\n        \"newPrice\": {\n          \"value\": 59900,\n          \"currency\": \"SEK\"\n        },\n        \"oldPrice\": {\n          \"value\": 125900,\n          \"currency\": \"SEK\"\n        },\n        \"discount\": 52\n      },\n      \"name\": \"Praktisk ångmopp för effektiv rengöring av flera olika typer av golv. Munstycke för fönstertvätt m.m. medföljer. Ord. pris\",\n      \"shortName\": \"Praktisk ångmopp för effektiv rengöring\",\n      \"brand\": \"JTP GROUP A/S\",\n      \"startDate\": \"2016-07-19T00:00:02+0200\",\n      \"endDate\": \"2016-09-01T00:00:01+0200\",\n      \"numberOfBuyers\": 11,\n      \"type\": \"shopping\",\n      \"categories\": [\n        {\n          \"name\": \"Hem\",\n          \"slug\": \"hem\"\n        }\n      ],\n      \"description\": \"Den här ångmoppen från Clatronic lämnar varken ränder eller spår på de rengjorda ytorna. Dessutom lämnas inga rester av rengöringsmedel eftersom moppen rengör uteslutande via ånga. Moppen kan användas på många ytor, till exempel laminatgolv, behandlade trägolv, granitgolv, keramiska golv och många fler. Den går också bra att använda till mattor.\",\n      \"cities\": []\n    }\n  ]\n}\n",
+                  "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"metadata\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"total\": {\n                    \"type\": \"integer\"\n                },\n                \"limit\": {\n                    \"type\": \"integer\"\n                },\n                \"offset\": {\n                    \"type\": \"integer\"\n                }\n            }\n        },\n        \"deals\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"$ref\": \"deal\"\n            }\n        }\n    }\n}\n"
+                }
+              }
+            }
+          },
+          "protocols": [
+            "HTTPS"
+          ],
+          "queryParameters": {
+            "sort": {
+              "name": "sort",
+              "displayName": "sort",
+              "type": "string",
+              "required": false,
+              "default": "distance",
+              "repeat": false,
+              "enum": [
+                "start_date",
+                "distance"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "type": "string",
+              "required": false,
+              "repeat": false,
+              "enum": [
+                "local",
+                "shopping",
+                "travel"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "category": {
+              "name": "category",
+              "displayName": "category",
+              "type": "string",
+              "required": false,
+              "repeat": false,
+              "description": "category slug",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "q": {
+              "name": "q",
+              "displayName": "q",
+              "type": "string",
+              "required": false,
+              "repeat": false,
+              "description": "query",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "city": {
+              "name": "city",
+              "displayName": "city",
+              "type": "string",
+              "required": false,
+              "repeat": false,
+              "description": "city id",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "distance": {
+              "name": "distance",
+              "displayName": "distance",
+              "type": "integer",
+              "required": false,
+              "repeat": false,
+              "description": "max distance in meters (lat and lon required)",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "method": "get",
+          "is": [
+            "pagination",
+            "coordinates"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "protocols": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      ],
+      "resources": [
+        {
+          "relativeUri": "/{id}",
+          "uriParameters": {
+            "id": {
+              "name": "id",
+              "displayName": "id",
+              "type": "string",
+              "required": true,
+              "example": "efbf44517debaf47176f2a31d7c55097",
+              "repeat": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "methods": [
+            {
+              "responses": {
+                "200": {
+                  "code": "200",
+                  "body": {
+                    "application/json": {
+                      "name": "application/json",
+                      "schema": "deal",
+                      "example": "{\n  \"id\": \"efbf44517debaf47176f2a31d7c55097\",\n  \"slug\": \"keratinbehandling\",\n  \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/6224899.jpg\",\n  \"price\": {\n    \"newPrice\": {\n      \"value\": 79900,\n      \"currency\": \"SEK\"\n    },\n    \"oldPrice\": {\n      \"value\": 290000,\n      \"currency\": \"SEK\"\n    },\n    \"discount\": 72\n  },\n  \"name\": \"Ge ditt hår en uppfriskande keratinbehandling hos BrazilHairstyling. Välj med eller utan hårinpackning för extra glans och hållbarhet. Ord. pris från\",\n  \"shortName\": \"Keratinbehandling\",\n  \"brand\": \"Brazil Hairstyle \",\n  \"startDate\": \"2016-07-19T00:00:15+0200\",\n  \"endDate\": \"2016-09-17T00:00:01+0200\",\n  \"numberOfBuyers\": 4,\n  \"type\": \"local\",\n  \"categories\": [\n    {\n      \"name\": \"Skönhet & Hälsa\",\n      \"slug\": \"sk-nhet-h-lsa\"\n    }\n  ],\n  \"description\": \"Keratinbehandling inkl. hårinpackning för extra glans och hållbarhet hos BrazilHairstyling. Ordinarie pris 3 449 kr, din deal: 899 kr – \",\n  \"cities\": [\n    {\n      \"id\": \"c4ca4238a0b923820dcc509a6f75849b\",\n      \"name\": \"Stockholm\",\n      \"slug\": \"stockholm\",\n      \"coordinates\": {\n        \"latitude\": 59.333333,\n        \"longitude\": 18.05\n      }\n    }\n  ]\n}\n",
+                      "schemaContent": "deal"
+                    }
+                  }
+                }
+              },
+              "protocols": [
+                "HTTPS"
+              ],
+              "method": "get",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "protocols": {
+                    "calculated": true
+                  }
+                }
+              }
+            }
+          ],
+          "displayName": "{id}",
+          "relativeUriPathSegments": [
+            "{id}"
+          ]
+        }
+      ],
+      "displayName": "Deals",
+      "relativeUriPathSegments": [
+        "deals"
+      ]
+    },
+    {
+      "relativeUri": "/layouts",
+      "resources": [
+        {
+          "relativeUri": "/featured",
+          "methods": [
+            {
+              "responses": {
+                "200": {
+                  "code": "200",
+                  "body": {
+                    "application/json": {
+                      "name": "application/json",
+                      "schema": "layouts",
+                      "example": "{\n  \"slug\": \"featured\",\n  \"visuals\": [],\n  \"sections\": [\n    {\n      \"title\": \"Some add\",\n      \"type\": \"banner\",\n      \"variant\": \"main\",\n      \"numberOfItems\": 1,\n      \"locationRequired\": false,\n      \"items\": [\n        {\n          \"imageUrl\": \"http://letsdeal-images.s3.amazonaws.com/banners/haagen-dazs_2016_06_lejon.png\",\n          \"uri\": \"letsdeal://deals/61f48e08f970ab97380b4d3eb94f757d\"\n        }\n      ]\n    },\n    {\n      \"title\": \"Bestsellers\",\n      \"type\": \"deals\",\n      \"variant\": \"main\",\n      \"numberOfItems\": 5,\n      \"locationRequired\": false,\n      \"items\": [\n        {\n          \"id\": \"61f48e08f970ab97380b4d3eb94f757d\",\n          \"slug\": \"h-agen-dazs\",\n          \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/9532130.jpg\",\n          \"price\": {\n            \"newPrice\": {\n              \"value\": 2900,\n              \"currency\": \"SEK\"\n            },\n            \"oldPrice\": {\n              \"value\": 4900,\n              \"currency\": \"SEK\"\n            },\n            \"discount\": 40\n          },\n          \"name\": \"Köp 0.5 liter glass från Häagen-Dazs! 15 smaker: Salted Caramel, Strawberry Cheesecake m.m. Hämta på valfri Coop, Hemköp, Willys, Citygross, Matrebellerna. Ord. pris\",\n          \"shortName\": \"Häagen-Dazs\",\n          \"brand\": \"General Mills Scandinavia AB\",\n          \"startDate\": \"2016-06-29T11:17:00+0200\",\n          \"endDate\": \"2016-07-29T00:00:01+0200\",\n          \"numberOfBuyers\": 8637,\n          \"type\": \"local\",\n          \"categories\": [\n            {\n              \"name\": \"Mat\",\n              \"slug\": \"mat\"\n            }\n          ],\n          \"description\": \"Unikt erbjudande från Häagen-Dazs – köp en deal och dela med dig till dom du älskar!\",\n          \"cities\": []\n        },\n        {\n          \"id\": \"4d2739a8d803daf293b4366d64389291\",\n          \"slug\": \"centralbadet-spadag-f-r-2\",\n          \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/1477716.jpg\",\n          \"price\": {\n            \"newPrice\": {\n              \"value\": 29900,\n              \"currency\": \"SEK\"\n            },\n            \"oldPrice\": {\n              \"value\": 29900,\n              \"currency\": \"SEK\"\n            },\n            \"discount\": 0\n          },\n          \"name\": \"Spadag för två personer på anrika Centralbadet på Drottninggatan. Ord. pris\",\n          \"shortName\": \"Centralbadet: Spadag för 2\",\n          \"brand\": \"Centralbadet \",\n          \"startDate\": \"2016-05-21T00:00:15+0200\",\n          \"endDate\": \"2016-08-19T00:00:01+0200\",\n          \"numberOfBuyers\": 3087,\n          \"type\": \"local\",\n          \"categories\": [\n            {\n              \"name\": \"Skönhet & Hälsa\",\n              \"slug\": \"sk-nhet-h-lsa\"\n            }\n          ],\n          \"description\": \"Efter en lång och utdragen vinter och vår får du nu möjligheten att koppla av och sortera tankarna i lugn och ro.\",\n          \"cities\": [\n            {\n              \"id\": \"c4ca4238a0b923820dcc509a6f75849b\",\n              \"name\": \"Stockholm\",\n              \"slug\": \"stockholm\",\n              \"coordinates\": {\n                \"latitude\": 59.333333,\n                \"longitude\": 18.05\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"56aba51b7933eb2c06db58df2c937bf8\",\n          \"slug\": \"2-st-sk-rmskydd-i-h-rdat-glas\",\n          \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/2469461.jpg\",\n          \"price\": {\n            \"newPrice\": {\n              \"value\": 9900,\n              \"currency\": \"SEK\"\n            },\n            \"oldPrice\": {\n              \"value\": 39800,\n              \"currency\": \"SEK\"\n            },\n            \"discount\": 75\n          },\n          \"name\": \"Skydda din display: 2 st. tåliga skärmskydd i härdat glas till din iPhone/Samsung-telefon. Tjocklek på bara 0,26 mm!\",\n          \"shortName\": \"2 st. skärmskydd i härdat glas\",\n          \"brand\": \"Aerpad Elektronik AB\",\n          \"startDate\": \"2016-05-03T00:00:01+0200\",\n          \"endDate\": \"2016-08-01T00:00:01+0200\",\n          \"numberOfBuyers\": 2641,\n          \"type\": \"shopping\",\n          \"categories\": [\n            {\n              \"name\": \"Teknik\",\n              \"slug\": \"teknik\"\n            }\n          ],\n          \"description\": \"Håll displayen repfri.\",\n          \"cities\": []\n        },\n        {\n          \"id\": \"7a0ba16c4e242e68aab5b3a78cb3ff1c\",\n          \"slug\": \"usb-kabel-2-meter\",\n          \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/7909042.jpg\",\n          \"price\": {\n            \"newPrice\": {\n              \"value\": 10000,\n              \"currency\": \"SEK\"\n            },\n            \"oldPrice\": {\n              \"value\": 10000,\n              \"currency\": \"SEK\"\n            },\n            \"discount\": 0\n          },\n          \"name\": \"2 m lång, platt USB-kabel till iPhone 5/5S/5C/6/6 plus eller telefoner med micro-anslutning (Samsung, HTC osv.). Flera färger. Ord pris\",\n          \"shortName\": \"USB-kabel, 2 meter\",\n          \"brand\": \"Aerpad Elektronik AB\",\n          \"startDate\": \"2016-05-08T00:00:04+0200\",\n          \"endDate\": \"2016-08-01T00:00:01+0200\",\n          \"numberOfBuyers\": 1808,\n          \"type\": \"shopping\",\n          \"categories\": [\n            {\n              \"name\": \"Teknik\",\n              \"slug\": \"teknik\"\n            }\n          ],\n          \"description\": \"Anslut till datorn för att överföra data till och från telefonen samtidigt som mobilen laddas. Kabellängden på 2 meter gör den praktisk, lätthanterlig och skänker extra spelrum när standardsladden inte riktigt räcker till. \",\n          \"cities\": []\n        },\n        {\n          \"id\": \"485508d1daf2acfdec13d56d044dfe45\",\n          \"slug\": \"smart-aktivitetsarmband\",\n          \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/7723840.jpg\",\n          \"price\": {\n            \"newPrice\": {\n              \"value\": 14900,\n              \"currency\": \"SEK\"\n            },\n            \"oldPrice\": {\n              \"value\": 46000,\n              \"currency\": \"SEK\"\n            },\n            \"discount\": 67\n          },\n          \"name\": \"Smart aktivitetsarmband – håll koll på steg, kalori, distans och sömn m.m. Välj mellan flera färger. Rek. butikspris\",\n          \"shortName\": \"Smart aktivitetsarmband\",\n          \"brand\": \"Biggiez online \",\n          \"startDate\": \"2016-06-21T00:00:09+0200\",\n          \"endDate\": \"2016-08-11T00:00:01+0200\",\n          \"numberOfBuyers\": 1726,\n          \"type\": \"shopping\",\n          \"categories\": [\n            {\n              \"name\": \"Teknik\",\n              \"slug\": \"teknik\"\n            }\n          ],\n          \"description\": \"Skaffa en personlig tränare i miniformat – ansluts till din mobiltelefon via Bluetooth. \",\n          \"cities\": []\n        }\n      ]\n    },\n    {\n      \"title\": \"What we think you like\",\n      \"type\": \"deals\",\n      \"variant\": \"main\",\n      \"numberOfItems\": 3,\n      \"locationRequired\": false,\n      \"items\": [\n        {\n          \"id\": \"efbf44517debaf47176f2a31d7c55097\",\n          \"slug\": \"keratinbehandling\",\n          \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/6224899.jpg\",\n          \"price\": {\n            \"newPrice\": {\n              \"value\": 79900,\n              \"currency\": \"SEK\"\n            },\n            \"oldPrice\": {\n              \"value\": 290000,\n              \"currency\": \"SEK\"\n            },\n            \"discount\": 72\n          },\n          \"name\": \"Ge ditt hår en uppfriskande keratinbehandling hos BrazilHairstyling. Välj med eller utan hårinpackning för extra glans och hållbarhet. Ord. pris från\",\n          \"shortName\": \"Keratinbehandling\",\n          \"brand\": \"Brazil Hairstyle \",\n          \"startDate\": \"2016-07-19T00:00:15+0200\",\n          \"endDate\": \"2016-09-17T00:00:01+0200\",\n          \"numberOfBuyers\": 4,\n          \"type\": \"local\",\n          \"categories\": [\n            {\n              \"name\": \"Skönhet & Hälsa\",\n              \"slug\": \"sk-nhet-h-lsa\"\n            }\n          ],\n          \"description\": \"Keratinbehandling inkl. hårinpackning för extra glans och hållbarhet hos BrazilHairstyling. Ordinarie pris 3 449 kr, din deal: 899 kr – \",\n          \"cities\": [\n            {\n              \"id\": \"c4ca4238a0b923820dcc509a6f75849b\",\n              \"name\": \"Stockholm\",\n              \"slug\": \"stockholm\",\n              \"coordinates\": {\n                \"latitude\": 59.333333,\n                \"longitude\": 18.05\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"e72f68c0674658addc842e28ece9735c\",\n          \"slug\": \"1-0-ml-restylane\",\n          \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/6243487.jpg\",\n          \"price\": {\n            \"newPrice\": {\n              \"value\": 165000,\n              \"currency\": \"SEK\"\n            },\n            \"oldPrice\": {\n              \"value\": 350000,\n              \"currency\": \"SEK\"\n            },\n            \"discount\": 52\n          },\n          \"name\": \"Få fylliga läppar: Injektionsbehandling – 1,0 ml Restylane hos Harodds dental clinic and laser treatment center.\",\n          \"shortName\": \"1,0 ml Restylane\",\n          \"brand\": \"Harodds Dental and Laser treatment Centre AB\",\n          \"startDate\": \"2016-07-19T00:00:15+0200\",\n          \"endDate\": \"2016-08-18T00:00:01+0200\",\n          \"numberOfBuyers\": 2,\n          \"location\": {\n            \"address\": \"Rundelen 3\\n211 19 Malmö\",\n            \"coordinates\": {\n              \"latitude\": 55.605667,\n              \"longitude\": 13.005549\n            }\n          },\n          \"type\": \"local\",\n          \"categories\": [\n            {\n              \"name\": \"Skönhet & Hälsa\",\n              \"slug\": \"sk-nhet-h-lsa\"\n            }\n          ],\n          \"description\": \"Harodds dental clinic and laser treatment center fokuserar på att erbjuda kunden högkvalitativ service, moderna och säkra behandlingar med god service kombinerat med erfarenhet, kompetens, trygghet och tillgänglighet. Behandlingen utförs av behörig personal med erfarenhet från Storbritannien. Du hittar salongen på Rundelen 3 i Malmö.\",\n          \"cities\": []\n        },\n        {\n          \"id\": \"4e1ca6e8555681fb23ab2acd17b21315\",\n          \"slug\": \"vaxning-flera-alternativ\",\n          \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/4335150.jpg\",\n          \"price\": {\n            \"newPrice\": {\n              \"value\": 14900,\n              \"currency\": \"SEK\"\n            },\n            \"oldPrice\": {\n              \"value\": 34900,\n              \"currency\": \"SEK\"\n            },\n            \"discount\": 57\n          },\n          \"name\": \"Vaxning hos Aleklinik. Välj bland flera behandlingsområden.  från\",\n          \"shortName\": \"Vaxning – flera alternativ\",\n          \"brand\": \"Alekliniken AB\",\n          \"startDate\": \"2016-07-19T00:00:14+0200\",\n          \"endDate\": \"2016-08-19T00:00:01+0200\",\n          \"numberOfBuyers\": 3,\n          \"type\": \"local\",\n          \"categories\": [\n            {\n              \"name\": \"Skönhet & Hälsa\",\n              \"slug\": \"sk-nhet-h-lsa\"\n            }\n          ],\n          \"description\": \"Vaxning hos Aleklinik. Vid köpknappen väljer du område att behandla.\",\n          \"cities\": []\n        }\n      ]\n    },\n    {\n      \"title\": \"Categories\",\n      \"type\": \"categories\",\n      \"variant\": \"main\",\n      \"numberOfItems\": 14,\n      \"locationRequired\": false,\n      \"items\": [\n        {\n          \"name\": \"Familj & Barn\",\n          \"slug\": \"familj-barn\",\n          \"dealTypes\": [\n            \"shopping\"\n          ]\n        },\n        {\n          \"name\": \"Inkl. flyg\",\n          \"slug\": \"inkl-flyg\",\n          \"dealTypes\": [\n            \"travel\"\n          ]\n        },\n        {\n          \"name\": \"Fordon\",\n          \"slug\": \"fordon\",\n          \"dealTypes\": [\n            \"shopping\",\n            \"local\"\n          ]\n        },\n        {\n          \"name\": \"Sport & Fritid\",\n          \"slug\": \"sport-fritid\",\n          \"dealTypes\": [\n            \"shopping\"\n          ]\n        },\n        {\n          \"name\": \"Hem\",\n          \"slug\": \"hem\",\n          \"dealTypes\": [\n            \"shopping\"\n          ]\n        },\n        {\n          \"name\": \"Skönhet & Hälsa\",\n          \"slug\": \"sk-nhet-h-lsa\",\n          \"dealTypes\": [\n            \"shopping\",\n            \"local\"\n          ]\n        },\n        {\n          \"name\": \"Internationellt\",\n          \"slug\": \"internationellt\",\n          \"dealTypes\": [\n            \"travel\"\n          ]\n        },\n        {\n          \"name\": \"Intim\",\n          \"slug\": \"intim\",\n          \"dealTypes\": [\n            \"shopping\"\n          ]\n        },\n        {\n          \"name\": \"Mat\",\n          \"slug\": \"mat\",\n          \"dealTypes\": [\n            \"local\"\n          ]\n        },\n        {\n          \"name\": \"Mode\",\n          \"slug\": \"mode\",\n          \"dealTypes\": [\n            \"shopping\"\n          ]\n        },\n        {\n          \"name\": \"Nationellt\",\n          \"slug\": \"nationellt\",\n          \"dealTypes\": [\n            \"travel\"\n          ]\n        },\n        {\n          \"name\": \"Wellness / Spa\",\n          \"slug\": \"wellness-spa\",\n          \"dealTypes\": [\n            \"travel\"\n          ]\n        },\n        {\n          \"name\": \"Teknik\",\n          \"slug\": \"teknik\",\n          \"dealTypes\": [\n            \"shopping\"\n          ]\n        },\n        {\n          \"name\": \"Upplevelser\",\n          \"slug\": \"upplevelser\",\n          \"dealTypes\": [\n            \"local\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Great deals close to you\",\n      \"type\": \"deals\",\n      \"variant\": \"main\",\n      \"numberOfItems\": 0,\n      \"locationRequired\": true,\n      \"items\": []\n    },\n    {\n      \"title\": \"Spiderman!\",\n      \"type\": \"hero\",\n      \"variant\": \"main\",\n      \"numberOfItems\": 4,\n      \"locationRequired\": false,\n      \"items\": [\n        {\n          \"imageUrl\": \"http://i.imgur.com/9Jq6Ct3.jpg\",\n          \"uri\": \"\"\n        },\n        {\n          \"imageUrl\": \"http://i3.kym-cdn.com/photos/images/facebook/000/741/494/bcf.jpg\",\n          \"uri\": \"http://marvel.com/characters/54/spider-man\"\n        },\n        {\n          \"imageUrl\": \"https://s-media-cache-ak0.pinimg.com/736x/39/b6/64/39b66455fbc67bc69aeda856763ca858.jpg\",\n          \"uri\": \"\"\n        },\n        {\n          \"imageUrl\": \"http://www.dumpaday.com/wp-content/uploads/2013/06/funny-spiderman-meme-pictures-7.jpg\",\n          \"uri\": \"http://marvel.com/characters/54/spider-man\"\n        }\n      ]\n    }\n  ]\n}\n",
+                      "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"slug\": {\n            \"type\": \"string\"\n        },\n        \"visuals\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {}\n            }\n        },\n        \"sections\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"title\": {\n                        \"type\": \"string\"\n                    },\n                    \"type\": {\n                        \"type\": \"string\"\n                    },\n                    \"variant\": {\n                        \"type\": \"string\"\n                    },\n                    \"numberOfItems\": {\n                        \"type\": \"integer\"\n                    },\n                    \"locationRequired\": {\n                        \"type\": \"boolean\"\n                    },\n                    \"items\": {\n                        \"type\": \"array\",\n                        \"items\": {\n                            \"type\": \"object\",\n                            \"properties\": {\n                                \"imageUrl\": {\n                                    \"type\": \"string\"\n                                },\n                                \"uri\": {\n                                    \"type\": \"string\"\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    }\n}\n"
+                    }
+                  }
+                }
+              },
+              "protocols": [
+                "HTTPS"
+              ],
+              "method": "get",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "protocols": {
+                    "calculated": true
+                  }
+                }
+              }
+            }
+          ],
+          "displayName": "featured",
+          "relativeUriPathSegments": [
+            "featured"
+          ]
+        }
+      ],
+      "displayName": "Layouts",
+      "relativeUriPathSegments": [
+        "layouts"
+      ]
+    },
+    {
+      "relativeUri": "/me",
+      "resources": [
+        {
+          "relativeUri": "/deals",
+          "methods": [
+            {
+              "responses": {
+                "200": {
+                  "code": "200",
+                  "body": {
+                    "application/json": {
+                      "name": "application/json",
+                      "schema": "myDeals",
+                      "example": "{\n    \"metadata\": {\n        \"total\": 0,\n        \"limit\": 0,\n        \"offset\": 0\n    },\n    \"myDeals\": [\n        {\n            \"id\": \"cead62c8108317a1158fd2651d2250d2\",\n            \"title\": \"AC-påfyllning av din bil – hemma hos dig eller på verkstaden – av Kungsbackas fordonsjour. Ord. pris\",\n            \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/3047333.jpg\",\n            \"orderId\": 12695,\n            \"orderDate\": \"2016-08-10T09:42:40+0200\",\n            \"type\": \"local\",\n            \"status\": \"expired\",\n            \"expirationDate\": \"2016-08-17T09:42:40+0200\"\n        }\n    ]\n}\n",
+                      "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"metadata\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"total\": {\n                    \"type\": \"integer\"\n                },\n                \"limit\": {\n                    \"type\": \"integer\"\n                },\n                \"offset\": {\n                    \"type\": \"integer\"\n                }\n            }\n        },\n        \"myDeals\": {\n            \"type\": \"array\",\n            \"items\": {\n                \"$ref\": \"myDeal\"\n            }\n        }\n    }\n}\n"
+                    }
+                  }
+                }
+              },
+              "protocols": [
+                "HTTPS"
+              ],
+              "queryParameters": {
+                "type": {
+                  "name": "type",
+                  "displayName": "type",
+                  "type": "string",
+                  "required": false,
+                  "repeat": false,
+                  "enum": [
+                    "valid",
+                    "used",
+                    "expired"
+                  ],
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      },
+                      "repeat": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              },
+              "method": "get",
+              "is": [
+                "pagination"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "protocols": {
+                    "calculated": true
+                  }
+                }
+              }
+            }
+          ],
+          "resources": [
+            {
+              "relativeUri": "/{id}",
+              "uriParameters": {
+                "id": {
+                  "name": "id",
+                  "displayName": "id",
+                  "type": "string",
+                  "required": true,
+                  "example": "6b44a3eb4d1e60f2f5525bcf95442faf",
+                  "repeat": false,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "repeat": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              },
+              "methods": [
+                {
+                  "responses": {
+                    "200": {
+                      "code": "200",
+                      "body": {
+                        "application/json": {
+                          "name": "application/json",
+                          "schema": "myDeal",
+                          "example": "{\n    \"id\": \"cead62c8108317a1158fd2651d2250d2\",\n    \"title\": \"AC-påfyllning av din bil – hemma hos dig eller på verkstaden – av Kungsbackas fordonsjour. Ord. pris\",\n    \"imageUrl\": \"https://storage.googleapis.com/letsdeal-bagheera-dev/deal-images/3047333.jpg\",\n    \"orderId\": 12695,\n    \"orderDate\": \"2016-08-10T09:42:40+0200\",\n    \"type\": \"local\",\n    \"status\": \"expired\",\n    \"expirationDate\": \"2016-08-17T09:42:40+0200\"\n}\n",
+                          "schemaContent": "{\n    \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n    \"id\": \"myDeal\",\n    \"type\": \"object\",\n    \"properties\": {\n        \"id\": {\n            \"type\": \"string\"\n        },\n        \"title\": {\n            \"type\": \"string\"\n        },\n        \"imageUrl\": {\n            \"type\": \"string\"\n        },\n        \"orderId\": {\n            \"type\": \"integer\"\n        },\n        \"orderDate\": {\n            \"type\": \"string\"\n        },\n        \"type\": {\n            \"type\": \"string\"\n        },\n        \"status\": {\n            \"type\": \"string\"\n        },\n        \"expirationDate\": {\n            \"type\": \"string\"\n        }\n    }\n}\n"
+                        }
+                      }
+                    }
+                  },
+                  "protocols": [
+                    "HTTPS"
+                  ],
+                  "method": "get",
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "protocols": {
+                        "calculated": true
+                      }
+                    }
+                  }
+                }
+              ],
+              "displayName": "{id}",
+              "relativeUriPathSegments": [
+                "{id}"
+              ]
+            }
+          ],
+          "displayName": "My deals",
+          "relativeUriPathSegments": [
+            "deals"
+          ]
+        }
+      ],
+      "displayName": "Me",
+      "relativeUriPathSegments": [
+        "me"
+      ]
+    }
+  ],
+  "documentation": [
+    {
+      "title": "Authentication",
+      "content": "There are two ways to authenticate with OAuth 2:\n\n* using `access_token=<access token>` query parameter\n* using `Authentication: Bearer <access token>` header\n"
+    }
+  ]
+}

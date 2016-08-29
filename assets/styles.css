@@ -1,0 +1,19 @@
+body>.ui.grid>.row {
+    padding-bottom: 0;
+}
+
+.menu-column {
+  background: #1B1C1D;
+}
+
+.third-column {
+  background: #f9f9f9;
+}
+
+.ui.menu {
+  border-radius: 0;
+}
+
+.jsonview {
+  font-size: 0.9em;
+}
