@@ -1,4 +1,6 @@
 <resource-method>
+  <a name={ _.toUpper(method.method()) + '_' + resource.completeRelativeUri() }></a>
+
   <div class="ui row grid">
     <div class="seven wide column">
       <h2 class="ui header">
