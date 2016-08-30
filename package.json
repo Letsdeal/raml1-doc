@@ -1,5 +1,5 @@
 {
-  "name": "ramldoc",
+  "name": "raml1-doc",
   "version": "1.0.0",
   "description": "Generate HTML documentation using RAML",
   "main": "index.js",
