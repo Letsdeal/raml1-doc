@@ -10,10 +10,10 @@
   <resource-method method={ method } resource={ resource }
     each={ method in resource.methods() }></resource-method>
 
-  <div each={ resource in resource.resources() }>
+  <virtual each={ resource in resource.resources() }>
     <resource-method method={ method } resource={ resource }
       each={ method in resource.methods() }></resource-method>
-  </div>
+  </virtual>
 
   <script>
     this.app = this.parent.app

@@ -4,6 +4,7 @@
     { api.title() }
   </a>
 
+  <!--
   <div class="item">
     <div class="header">Objects</div>
 
@@ -13,6 +14,7 @@
         </a>
     </div>
   </div>
+-->
 
   <div class="item" each={ resource in api.resources() }>
     <div class="header">{ resource.displayName() }</div>

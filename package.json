@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "change-case": "^3.0.0",
     "commander": "^2.9.0",
     "deasync": "^0.1.7",
     "glob": "^7.0.5",

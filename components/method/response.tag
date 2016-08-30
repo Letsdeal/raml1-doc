@@ -50,9 +50,8 @@
     }
 
     if (this.method) {
-      console.error(this.method.responses()[0].body()[0].schemaContent())
-
       this.jsonSchema = this.method.responses()[0].body()[0].schemaContent()
+
       try {
         this.jsonSchema = JSON.parse(this.jsonSchema)
       } catch(e) {}

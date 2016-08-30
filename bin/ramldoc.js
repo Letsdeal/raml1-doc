@@ -47,6 +47,10 @@ app.singleton('schema-resolver', () => {
   return resolver(api)
 })
 
+riot.tag('raw', '<span></span>', function(opts) {
+    this.root.innerHTML = opts.html
+})
+
 let componentsPath = path.join(__dirname, '../components/**/*.tag')
 
 glob.sync(componentsPath).forEach(function(tag) {
