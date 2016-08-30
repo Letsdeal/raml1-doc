@@ -18,9 +18,7 @@
     <div class="header">{ resource.displayName() }</div>
 
     <div class="menu">
-      <a class="item" each={ method in resource.methods() }>
-        { _.toUpper(method.method()) } { resource.relativeUri().value() }
-      </a>
+      <menu-resource resource={ resource }></menu-resource>
     </div>
   </div>
 

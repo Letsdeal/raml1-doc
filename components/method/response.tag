@@ -1,27 +1,27 @@
 <method-response>
   <div class="ui secondary pointing menu js-tab">
-    <a class="item active" data-tab="schema">
+    <a class="item active" data-tab="schema-{ methodId }">
       Schema
     </a>
 
-    <a class="item" data-tab="example">
+    <a class="item" data-tab="example-{ methodId }">
       Example
     </a>
 
-    <a class="item" data-tab="try">
+    <a class="item" data-tab="try-{ methodId }">
       Try
     </a>
   </div>
 
-  <div class="ui bottom attached tab active js-json" data-tab="schema">
+  <div class="ui bottom attached tab active js-json" data-tab="schema-{ methodId }">
     { JSON.stringify(jsonSchema) }
   </div>
 
-  <div class="ui bottom attached tab js-json" data-tab="example">
+  <div class="ui bottom attached tab js-json" data-tab="example-{ methodId }">
     { resource.methods()[0].responses()[0].body()[0].example().value() }
   </div>
 
-  <div class="ui bottom attached tab" data-tab="try">
+  <div class="ui bottom attached tab" data-tab="try-{ methodId }">
   </div>
 
   <script>
@@ -50,11 +50,18 @@
     }
 
     if (this.method) {
+      console.error(this.method.responses()[0].body()[0].schemaContent())
+
       this.jsonSchema = this.method.responses()[0].body()[0].schemaContent()
-      this.jsonSchema = JSON.parse(this.jsonSchema)
+      try {
+        this.jsonSchema = JSON.parse(this.jsonSchema)
+      } catch(e) {}
+
       this.jsonSchema = this.dereference(this.jsonSchema)
+      this.methodId = this.method.methodId().replace(/[\W]/g, '_')
     } else {
       this.jsonSchema = {}
+      this.methodId = ''
     }
   </script>
 </method-response>

@@ -2,6 +2,10 @@ body>.ui.grid>.row {
     padding-bottom: 0;
 }
 
+h1.ui.dividing.header {
+    margin-top: 20px;
+}
+
 .menu-column {
   background: #1B1C1D;
 }
