@@ -24,7 +24,5 @@
   "devDependencies": {
     "intern": "^3.3.1"
   },
-  "bin": {
-    "raml1doc": "./bin/ramldoc.js"
-  }
+  "bin": "./bin/raml1-doc.js"
 }
