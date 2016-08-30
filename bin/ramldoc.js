@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var raml1doc = require('../src/raml1-doc')
 var fs = require('fs')
 var glob = require('glob')
 var program = require('commander')
@@ -21,44 +22,13 @@ if (!program.args[0]) {
   process.exit(1)
 }
 
-let ramlFile = path.resolve(process.cwd(), program.args[0])
-let api = ramlParser.loadApiSync(ramlFile)
+let ramlFilePath = path.resolve(process.cwd(), program.args[0])
+let html = raml1doc(ramlFilePath)
 
-if (api.errors()) {
-  /*api.errors().forEach(function(x){
-    console.error({
-      code: x.code,
-      message: x.message,
-      path: x.path,
-      start: x.start,
-      end: x.end
-    })
-  })*/
-
-  // process.exit(1)
+if (program.output) {
+  fs.writeFileSync(program.output, html)
+} else {
+  process.stdout.write(html)
 }
 
-app.singleton('api', () => {
-  return api
-})
-
-app.singleton('schema-resolver', () => {
-  var resolver = require('../src/schema-resolver')
-  return resolver(api)
-})
-
-riot.tag('raw', '<span></span>', function(opts) {
-    this.root.innerHTML = opts.html
-})
-
-let componentsPath = path.join(__dirname, '../components/**/*.tag')
-
-glob.sync(componentsPath).forEach(function(tag) {
-  require(tag)
-})
-
-let index = require('../index.tag')
-let html = riot.render(index, { 'api': api, 'app': app })
-
-process.stdout.write(html)
 process.exit(0)
