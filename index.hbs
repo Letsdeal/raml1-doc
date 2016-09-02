@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.min.css" rel="stylesheet">
+
+    <style>
+      body>.ui.grid>.row {
+          padding-bottom: 0;
+      }
+
+      h1.ui.dividing.header {
+          margin-top: 20px;
+      }
+
+      resource-method>.ui.row {
+          padding-top: 15px;
+      }
+
+      .menu-column {
+        background: #1B1C1D;
+      }
+
+      .third-column {
+        background: #f9f9f9;
+      }
+
+      .ui.menu {
+        border-radius: 0;
+      }
+
+      .jsonview {
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="ui grid" riot-tag="app">
+      {{{ app }}}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.min.js"></script>
+
+    <script>
+      $(function() {
+        $('.js-tab .item').tab()
+
+        $('.js-json').each(function(node) {
+          try {
+            var json = $(this).text()
+            $(this).JSONView(json).JSONView('collapse', 1)
+          } catch(e) {
+            console.error(e)
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

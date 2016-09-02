@@ -1,8 +1,10 @@
 var glob = require('glob')
+var fs = require('fs')
 var path = require('path')
 var ramlParser = require('raml-1-parser')
 var riot = require('riot')
 var Inverse = require('inverse')
+var handlebars = require('handlebars')
 
 module.exports = (ramlFilePath) => {
   let app = new Inverse()
@@ -41,7 +43,15 @@ module.exports = (ramlFilePath) => {
     require(tag)
   })
 
-  let index = require('../index.tag')
+  let appComponent = require('../components/app.tag')
+  let appHtml = riot.render(appComponent, { 'api': api, 'app': app })
+  appHtml = appHtml.replace('<app>', '').replace('</app>')
 
-  return riot.render(index, { 'api': api, 'app': app })
+  let indexTemplatePath = path.join(__dirname, '../index.hbs')
+  let indexTemplate = fs.readFileSync(indexTemplatePath, { encoding: 'utf8' })
+
+  return handlebars.compile(indexTemplate)({
+    title: api.title(),
+    app: appHtml
+  })
 }

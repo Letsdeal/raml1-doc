@@ -1,5 +1,4 @@
 <app>
-
   <div class="three wide column menu-column">
     <div class="ui fluid vertical inverted menu" riot-tag="menu"></div>
   </div>
@@ -9,8 +8,7 @@
   </div>
 
   <script>
-    this.api = this.parent.api
-    this.app = this.parent.app
-    this.schemas = this.parent.schemas
+    this.api = opts.api
+    this.app = opts.app
   </script>
 </app>
