@@ -25,7 +25,7 @@
 
     this.method = opts.method
 
-    this.traits = _.map(this.method.parent().is(), (is) => {
+    this.traits = _.map(this.method.is(), (is) => {
       return is.trait()
     })
 

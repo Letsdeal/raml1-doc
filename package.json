@@ -18,7 +18,7 @@
     "json-schema-ref-parser": "^3.1.2",
     "lodash": "^4.15.0",
     "marked": "^0.3.6",
-    "raml-1-parser": "^0.2.33",
+    "raml-1-parser": "^1.1.0",
     "riot": "^2.6.0",
     "twig": "^0.9.5"
   },
