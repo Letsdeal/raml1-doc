@@ -1,15 +1,15 @@
 <method-response>
   <div class="ui secondary pointing menu js-tab">
     <a class="item active" data-tab="schema-{ methodId }">
-      Schema
+      <i class="code icon"></i> Schema
     </a>
 
     <a class="item" data-tab="example-{ methodId }">
-      Example
+      <i class="info icon"></i> Example
     </a>
 
     <a class="item" data-tab="try-{ methodId }">
-      Try
+      <i class="eyedropper icon"></i> Try
     </a>
   </div>
 
