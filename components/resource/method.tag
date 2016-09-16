@@ -3,15 +3,17 @@
 
   <div class="ui row grid">
     <div class="seven wide column">
-      <h2 class="ui header">
+      <h3 class="ui header">
         { _.toUpper(method.method()) } { resource.completeRelativeUri() }
-      </h2>
+      </h3>
 
       <method-request method={ opts.method }></method-request>
     </div>
 
     <div class="nine wide column third-column">
-      <method-response resource={ resource }></method-response>
+      <method-response each={ response in method.responses() }
+        response={ response }>
+      </method-response>
     </div>
   </div>
 

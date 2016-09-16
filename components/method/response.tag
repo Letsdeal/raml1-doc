@@ -1,15 +1,15 @@
 <method-response>
   <div class="ui secondary pointing menu js-tab">
     <a class="item active" data-tab="schema-{ methodId }">
-      <i class="code icon"></i> Schema
+      <i class="code disabled icon"></i> Schema
     </a>
 
     <a class="item" data-tab="example-{ methodId }">
-      <i class="info icon"></i> Example
+      <i class="info disabled icon"></i> Example
     </a>
 
     <a class="item" data-tab="try-{ methodId }">
-      <i class="eyedropper icon"></i> Try
+      <i class="eyedropper disabled icon"></i> Try
     </a>
   </div>
 
@@ -18,17 +18,18 @@
   </div>
 
   <div class="ui bottom attached tab js-json" data-tab="example-{ methodId }">
-    { resource.methods()[0].responses()[0].body()[0].example().value() }
+    { response.body()[0].example().value() }
   </div>
 
   <div class="ui bottom attached tab" data-tab="try-{ methodId }">
   </div>
 
   <script>
+    if (!opts.response) return
+
     this.$RefParser = require('json-schema-ref-parser')
-    this.resource = opts.resource
-    this.schemas = opts.schemas
-    this.method = this.resource.methods()[0]
+    this.response = opts.response
+    this.method = this.response.parent()
 
     this.dereference = (schema) => {
       var data, done = false
@@ -50,7 +51,7 @@
     }
 
     if (this.method) {
-      this.jsonSchema = this.method.responses()[0].body()[0].schemaContent()
+      this.jsonSchema = this.response.body()[0].schemaContent()
 
       try {
         this.jsonSchema = JSON.parse(this.jsonSchema)

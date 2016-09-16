@@ -1,6 +1,6 @@
 <query-parameters>
   <div if={ queryParameters.length > 0 }>
-    <div class="ui small header">Query Parameters</div>
+    <a class="ui blue ribbon label">Query</a> Query Parameters
 
     <table class="ui table">
       <thead>

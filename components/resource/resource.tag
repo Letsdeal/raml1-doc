@@ -1,9 +1,9 @@
 <resource>
   <div class="ui row grid">
     <div class="seven wide column">
-      <h1 class="ui dividing header">
+      <h2 class="ui dividing header">
         { resource.displayName() }
-      </h1>
+      </h2>
     </div>
 
     <div class="nine wide column third-column"></div>

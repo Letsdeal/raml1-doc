@@ -1,6 +1,6 @@
 {
   "name": "raml1-doc",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Generate HTML documentation using RAML",
   "main": "index.js",
   "scripts": {
