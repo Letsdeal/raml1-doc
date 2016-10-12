@@ -1,5 +1,5 @@
 <resource>
-  <div class="ui row grid">
+  <div class="ui row grid" if={ resource.parent().kind() == 'Api' }>
     <div class="seven wide column">
       <h2 class="ui dividing header">
         { resource.displayName() }
@@ -11,11 +11,6 @@
 
   <resource-method method={ method } resource={ resource }
     each={ method in resource.methods() }></resource-method>
-
-  <virtual each={ resource in resource.resources() }>
-    <resource-method method={ method } resource={ resource }
-      each={ method in resource.methods() }></resource-method>
-  </virtual>
 
   <script>
     this.app = this.parent.app

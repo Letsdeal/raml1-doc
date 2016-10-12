@@ -3,10 +3,6 @@
 
   <div class="ui row grid">
     <div class="seven wide column">
-      <h3 class="ui header">
-        { _.toUpper(method.method()) } { resource.completeRelativeUri() }
-      </h3>
-
       <method-request method={ opts.method }></method-request>
     </div>
 
