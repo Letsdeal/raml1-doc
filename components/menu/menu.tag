@@ -1,8 +1,14 @@
 <menu>
 
-  <a class="item">
-    { api.title() }
-  </a>
+  <div class="item">
+    <div class="header">{ api.title() }</div>
+
+    <div class="menu">
+      <a class="item" each={ documentation in api.documentation() }>
+        { documentation.title() }
+      </a>
+    </div>
+  </div>
 
   <!--
   <div class="item">
@@ -14,7 +20,7 @@
         </a>
     </div>
   </div>
--->
+  -->
 
   <div class="item" each={ resource in api.resources() }>
     <div class="header">{ resource.displayName() }</div>

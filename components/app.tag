@@ -4,7 +4,8 @@
   </div>
 
   <div class="thirteen wide column grid">
-      <resource resource={ resource } each={ resource in api.allResources() }></resource>
+    <documentation documentation={ documentation } each={ documentation in api.documentation() } />
+    <resource resource={ resource } each={ resource in api.allResources() } />
   </div>
 
   <script>
