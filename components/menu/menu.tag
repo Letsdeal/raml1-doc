@@ -4,7 +4,8 @@
     <div class="header">{ api.title() }</div>
 
     <div class="menu">
-      <a class="item" each={ documentation in api.documentation() }>
+      <a class="item" href="#{ encodeURIComponent(documentation.title()) }"
+          each={ documentation in api.documentation() }>
         { documentation.title() }
       </a>
     </div>

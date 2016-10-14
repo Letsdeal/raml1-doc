@@ -5,7 +5,7 @@
 
   <p>{ opts.method.description() }</p>
 
-  <div class="ui segment">
+  <div>
     <query-parameters method={ opts.method } />
     <request-body each={ body in opts.method.body() } body={ body } />
   </div>

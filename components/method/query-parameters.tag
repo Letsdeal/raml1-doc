@@ -1,19 +1,12 @@
 <query-parameters>
-  <div if={ queryParameters.length > 0 }>
-    <a class="ui blue ribbon label">Query</a> Query Parameters
+  <div class="ui segment" if={ queryParameters.length > 0 }>
+    <a class="ui top left attached label">Query Parameters</a>
 
-    <table class="ui table">
-      <thead>
-        <tr>
-          <th width="160px">Name</th>
-          <th width="100px">Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
+    <table class="ui very basic compact table">
       <tbody>
         <tr each={ param in queryParameters }>
-          <td>{ param.name() }</td>
-          <td>{ param.type() }</td>
+          <td width="160px">{ param.name() }</td>
+          <td width="100px">{ param.type() }</td>
           <td>{getQueryParameterDescription(param) }</td>
         </tr>
       </tbody>
