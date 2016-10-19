@@ -1,7 +1,7 @@
 <documentation>
-  <div class="ui row grid">
-    <a name={ encodeURIComponent(documentation.title()) }></a>
+  <a name={ encodeURIComponent(documentation.title()) }></a>
 
+  <div class="ui row grid">
     <div class="seven wide column">
       <h2 class="ui dividing header">
         { documentation.title() }

@@ -50,7 +50,18 @@
 
     <script>
       $(function() {
+        $('.ui.dropdown').dropdown()
         $('.js-tab .item').tab()
+
+        $('.js-tab .item[data-response-code]').click(function () {
+          var responseCode = $(this).data('response-code')
+          var $tab = $('.tab[data-response-code="' + responseCode + '"]')
+
+          $(this).parents('a').first().find('span').text(responseCode)
+
+          $tab.parent().find('.tab').removeClass('active')
+          $tab.addClass('active')
+        })
 
         $('.js-json').each(function(node) {
           try {

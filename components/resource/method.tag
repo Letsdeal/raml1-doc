@@ -7,9 +7,7 @@
     </div>
 
     <div class="nine wide column third-column">
-      <method-response each={ response in method.responses() }
-        response={ response }>
-      </method-response>
+      <method-responses if={ method.responses().length } method={ method } />
     </div>
   </div>
 
