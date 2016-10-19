@@ -7,8 +7,7 @@
         { documentation.title() }
       </h2>
 
-      <raw html={ parse(documentation.content().value()) }>
-      </raw>
+      <raw html={ parse(documentation.content().value()) } />
     </div>
 
     <div class="nine wide column third-column"></div>
@@ -18,9 +17,10 @@
     const remark = require('remark')
     const html = require('remark-html')
     const hljs  = require('remark-highlight.js')
+    const transformer = require('../../src/ast-transformer.js')
 
     this.parse = function(text) {
-      let result = remark().use([ html, hljs ]).process(text)
+      let result = remark().use([ html, hljs, transformer ]).process(text)
       return result.contents
     }
   </script>
