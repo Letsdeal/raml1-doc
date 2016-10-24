@@ -46,6 +46,14 @@
         details.push('default: ' + queryParameter.default())
       }
 
+      if (queryParameter.kind() == 'StringTypeDeclaration' && queryParameter.maxLength()) {
+        details.push('max length: ' + queryParameter.maxLength())
+      }
+
+      if (queryParameter.kind() == 'NumberTypeDeclaration' && queryParameter.maximum()) {
+        details.push('max: ' + queryParameter.maximum())
+      }
+
       if (queryParameter.example()) {
         details.push('example: ' + queryParameter.example())
       }
