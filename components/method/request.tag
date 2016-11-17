@@ -3,7 +3,7 @@
     { _.toUpper(method.method()) } { resource.completeRelativeUri() }
   </h3>
 
-  <p>{ opts.method.description() }</p>
+  <p>{ opts.method.description().value() }</p>
 
   <div>
     <query-parameters method={ opts.method } />
