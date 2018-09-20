@@ -45,12 +45,17 @@
   <script>
     this.$RefParser = require('json-schema-ref-parser')
     this.method = opts.method
+    this.responses = this.method.responses()
+    this.methodId = this.method.methodId().replace(/[\W]/g, '_')
 
     this.dereference = (schema) => {
       var data, done = false
       var resolver = this.parent.app.make('schema-resolver')
 
-      this.$RefParser.dereference(schema, { resolve: { raml: resolver }}, function(err, schema) {
+      this.$RefParser.dereference(schema, {
+        resolve: { file: false, raml: resolver },
+        dereference: { circular: 'ignore' }
+      }, function(err, schema) {
         if (err) {
           console.error(err)
           return done = true
@@ -80,10 +85,5 @@
     this.isFirstResponse = (response) => {
       return this.responses[0].code().value() == response.code().value()
     }
-
-    this.on('update', () => {
-      this.responses = this.method.responses()
-      this.methodId = this.method.methodId().replace(/[\W]/g, '_')
-    })
   </script>
 </method-responses>

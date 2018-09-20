@@ -9,8 +9,10 @@
     <div class="nine wide column third-column"></div>
   </div>
 
-  <resource-method method={ method } resource={ resource }
-    each={ method in resource.methods() }></resource-method>
+  <resource-method
+    method={ method } resource={ resource }
+    each={ method in resource.methods() }
+  />
 
   <script>
     this.app = this.parent.app

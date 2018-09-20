@@ -1,5 +1,4 @@
 <menu>
-
   <div class="item">
     <div class="header">{ api.title() }</div>
 
@@ -33,6 +32,6 @@
 
   <script>
     this._ = require('lodash')
-    this.api = this.parent.api
+    this.api = opts.api
   </script>
 </menu>

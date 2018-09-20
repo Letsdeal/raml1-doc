@@ -3,7 +3,7 @@
 
   <div class="ui row grid">
     <div class="seven wide column">
-      <method-request method={ opts.method }></method-request>
+      <method-request method={ method } resource={ resource } />
     </div>
 
     <div class="nine wide column third-column">
@@ -13,8 +13,8 @@
 
   <script>
     this._ = require('lodash')
-    this.method = this.parent.method
-    this.resource = this.parent.resource
+    this.method = opts.method
+    this.resource = opts.resource
     this.app = this.parent.app
   </script>
 </resource-method>

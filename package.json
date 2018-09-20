@@ -22,7 +22,7 @@
     "remark": "^6.0.1",
     "remark-highlight.js": "^5.0.0",
     "remark-html": "^5.0.1",
-    "riot": "^2.6.3",
+    "riot": "^3.0.0",
     "twig": "^1.12.0"
   },
   "devDependencies": {
