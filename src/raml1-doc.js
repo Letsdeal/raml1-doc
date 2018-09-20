@@ -45,7 +45,7 @@ module.exports = (ramlFilePath) => {
 
   let appComponent = require('../components/app.tag')
   let appHtml = riot.render(appComponent, { 'api': api, 'app': app })
-  appHtml = appHtml.replace('<app>', '').replace('</app>')
+  appHtml = appHtml.replace('<app>', '').replace('</app>', '')
 
   let indexTemplatePath = path.join(__dirname, '../index.hbs')
   let indexTemplate = fs.readFileSync(indexTemplatePath, { encoding: 'utf8' })
